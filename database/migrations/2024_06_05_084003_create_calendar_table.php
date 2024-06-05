@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attaches', function (Blueprint $table) {
-            $table->id();
-            $table->string('eventID');
-            $table->string('catagoryID');
-            $table->foreign('eventID')->references('eventID')->on('events')->onDelete('cascade');
+        Schema::create('calendar', function (Blueprint $table) {
+            $table->increments('calendarid');
+            $table->date('startdate')->nullable();
+            $table->date('enddate')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attaches');
+        Schema::dropIfExists('calendar');
     }
 };
