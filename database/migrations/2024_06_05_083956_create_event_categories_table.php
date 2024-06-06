@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('eventcategories', function (Blueprint $table) {
             $table->increments('categoryid_');
-            $table->longText('name')->nullable();
+            $table->longText('name');
             $table->longText('description')->nullable();
             $table->timestamps();
         });

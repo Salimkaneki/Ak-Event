@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->increments('eventid');
-            $table->integer('calendarid')->unsigned();
-            $table->integer('categoryid_')->unsigned();
-            $table->integer('creatorid')->unsigned();
-            $table->longText('title')->nullable();
-            $table->longText('description')->nullable();
-            $table->integer('ticketnumber')->nullable();
-            $table->longText('eventimage')->nullable();
-            $table->longText('eventvideo')->nullable();
-            $table->longText('location')->nullable();
+            $table->integer('calendarid');
+            $table->integer('categoryid_');
+            $table->integer('creatorid');
+            $table->longText('title');
+            $table->longText('description')();
+            $table->integer('ticketnumber');
+            $table->longText('eventimage');
+            $table->longText('eventvideo');
+            $table->longText('location');
             $table->timestamps();
         
             $table->foreign('calendarid')->references('calendarid')->on('calendar');

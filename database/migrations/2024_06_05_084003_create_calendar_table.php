@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('calendar', function (Blueprint $table) {
             $table->increments('calendarid');
-            $table->date('startdate')->nullable();
-            $table->date('enddate')->nullable();
+            $table->date('startdate');
+            $table->date('enddate');
             $table->timestamps();
         });
         
