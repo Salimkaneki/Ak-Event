@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payment', function (Blueprint $table) {
-            $table->increments('paymentid');
+            $table->increments('paymentid'); // clé primaire ajoutée
             $table->integer('ticketid')->unsigned();
-            $table->integer('amout');
+            $table->integer('amount');
             $table->date('paymentdate')->nullable();
             $table->longText('paymentmethod')->nullable();
             $table->longText('status')->nullable();
@@ -22,7 +22,6 @@ return new class extends Migration
         
             $table->foreign('ticketid')->references('ticketid')->on('ticket');
         });
-        
     }
 
     /**

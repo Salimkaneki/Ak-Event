@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->increments('userid');
-            $table->integer('creatorid');
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('userid'); // clé primaire ajoutée
+            $table->unsignedInteger('creatorid')->nullable();
             $table->longText('firstname');
             $table->longText('lastname');
             $table->longText('phonenumber');
@@ -21,25 +21,10 @@ return new class extends Migration
             $table->longText('email');
             $table->longText('password');
             $table->timestamps();
-        
-            // $table->foreign('creatorid')->references('creatorid')->on('creator');
-        });
 
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            // Ajout de la clé étrangère
+            $table->foreign('creatorid')->references('creatorid')->on('creators')->onDelete('set null');
         });
-
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
-        });
-        
     }
 
     /**
@@ -47,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 };

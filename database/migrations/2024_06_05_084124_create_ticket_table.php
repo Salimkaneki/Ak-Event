@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('ticket', function (Blueprint $table) {
             $table->increments('ticketid');
-            $table->integer('userid')->unsigned();
-            $table->integer('eventid')->unsigned();
-            $table->integer('typeid')->unsigned();
+            $table->unsignedInteger('userid');
+            $table->unsignedInteger('eventid');
+            $table->unsignedInteger('typeid');
             $table->integer('price');
             $table->integer('quantity');
             $table->timestamps();
         
-            $table->foreign('userid')->references('userid')->on('user');
+            $table->foreign('userid')->references('userid')->on('users');
             $table->foreign('eventid')->references('eventid')->on('event');
+            // Ajout de la clé étrangère pour typeid, assurez-vous que la table tickettype existe avec une colonne typeid correspondante
             $table->foreign('typeid')->references('typeid')->on('tickettype');
         });
-        
     }
 
     /**

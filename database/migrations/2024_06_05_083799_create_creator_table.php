@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('creator', function (Blueprint $table) {
-            $table->increments('creatorid');
-            $table->integer('userid');
+        Schema::create('creators', function (Blueprint $table) {
+            $table->increments('creatorid'); // clé primaire ajoutée
             $table->longText('name');
             $table->longText('bio');
             $table->longText('email');
             $table->longText('password');
             $table->timestamps();
-        
-            $table->foreign('userid')->references('userid')->on('user');
         });
-        
     }
 
     /**
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('creator');
+        Schema::dropIfExists('creators');
     }
 };

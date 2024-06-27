@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->increments('eventid');
-            $table->integer('calendarid');
-            $table->integer('categoryid_');
-            $table->integer('creatorid');
+            $table->unsignedInteger('calendarid');
+            $table->unsignedInteger('categoryid_'); // Utilisation de unsignedInteger
+            $table->unsignedInteger('creatorid');
             $table->longText('title');
-            $table->longText('description')();
+            $table->longText('description');
             $table->integer('ticketnumber');
             $table->longText('eventimage');
             $table->longText('eventvideo');
             $table->longText('location');
             $table->timestamps();
-        
+
+            // Définition des clés étrangères
             $table->foreign('calendarid')->references('calendarid')->on('calendar');
-            $table->foreign('categoryid_')->references('categoryid_')->on('eventcategories');
-            $table->foreign('creatorid')->references('creatorid')->on('creator');
+            $table->foreign('categoryid_')->references('categoryid_')->on('event_categories');
+            $table->foreign('creatorid')->references('creatorid')->on('creators');
         });
-        
     }
 
     /**
